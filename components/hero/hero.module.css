@@ -1,0 +1,55 @@
+.textContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.textContainer span {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  margin-top: 5rem;
+  letter-spacing: -0.3rem;
+}
+
+.featured {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  overflow: scroll;
+}
+
+.imageContainer {
+  flex: 0 0 auto;
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.imageContainer::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 5em;
+  height: 3rem;
+  background-color: white;
+  border-radius: 2rem;
+}
+
+.imageContainer img {
+  transition: all 0.3s ease-in-out;
+}
+
+.imageContainer img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

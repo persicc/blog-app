@@ -1,0 +1,66 @@
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+}
+
+.left {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+
+.links :last-child {
+  text-decoration: underline;
+}
+
+.links span {
+  cursor: pointer;
+}
+
+.links span:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 2rem;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.searchIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #000;
+  border-radius: 50%;
+}
+
+.menuButton {
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .links {
+    display: none;
+  }
+}
