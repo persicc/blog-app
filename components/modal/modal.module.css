@@ -44,11 +44,4 @@
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  background: black;
-  color: white;
-  font-size: 1.2rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 2rem;
-  border: none;
-  cursor: pointer;
 }

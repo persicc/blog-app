@@ -40,18 +40,52 @@
 
 .right {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
 }
 
-.searchIcon {
-  width: 2.5rem;
-  height: 2.5rem;
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  align-self: last baseline;
+  gap: 1rem;
+  padding: 0.3rem;
   background: #000;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: width 0.2s ease-in-out, padding 0.2s ease-in-out,
+    border-radius 0.2s ease-in-out;
+  flex-grow: 0;
+}
+
+.searchButton.open {
+  width: auto;
+  padding: 0 1rem;
+  flex-grow: 1;
+}
+
+.searchIcon {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  background: rgb(71, 71, 71);
   border-radius: 50%;
 }
 
+.searchButton input {
+  background-color: transparent;
+  padding: 0 1rem;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  outline: none;
+  width: 100%;
+}
+
 .menuButton {
+  display: none;
   border: 2px solid black;
   border-radius: 2rem;
   padding: 0.5rem 1rem;
@@ -62,5 +96,9 @@
 @media screen and (max-width: 900px) {
   .links {
     display: none;
+  }
+
+  .menuButton {
+    display: block;
   }
 }

@@ -1,14 +1,27 @@
 "use client";
+
 import React, { useState } from "react";
 import styles from "./navbar.module.css";
 import Link from "next/link";
 import Modal from "../modal/Modal";
+import SearchIcon from "@mui/icons-material/Search";
+import MobileMenu from "../mobileMenu/MobileMenu";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
 
   const openModal = () => {
     setOpen(!open);
+  };
+
+  const openSearch = () => {
+    setSearchOpen(!searchOpen);
+  };
+
+  const openMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
@@ -27,13 +40,23 @@ function Navbar() {
       </div>
 
       <div className={styles.right}>
-        <div className={styles.searchIcon} onClick={openModal}></div>
-        <div className={styles.menuButton}>Menu</div>
+        <div className={`${styles.searchButton} ${searchOpen ? "open" : ""}`}>
+          {searchOpen && (
+            <input type="text" placeholder="Search for posts..." />
+          )}
+          <SearchIcon className={styles.searchIcon} onClick={openSearch} />
+        </div>
+
+        <div className={styles.menuButton} onClick={openMobileMenu}>
+          Menu
+        </div>
       </div>
 
       <Modal open={open} onClose={openModal}>
         This is modal
       </Modal>
+
+      <MobileMenu open={mobileMenuOpen} onClose={openMobileMenu} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styles from "./modal.module.css";
+import Button from "../button/Button";
 
 function Modal({ children, open, onClose }) {
   useEffect(() => {
@@ -8,20 +9,15 @@ function Modal({ children, open, onClose }) {
 
   return (
     <div
-      className={`${open ? styles.open : styles.close} ${
-        styles.modalContainer
+      className={`${styles.modalContainer} ${
+        open ? styles.open : styles.close
       }`}
     >
-      <div
-        className={`${open ? styles.openModal : styles.closeModal}, ${
-          styles.modal
-        }`}
-      >
+      <div className={styles.modal}>
         {children}
-
-        <button className={styles.closeButton} onClick={onClose}>
+        <Button className={styles.closeButton} onClick={onClose}>
           Close
-        </button>
+        </Button>
       </div>
     </div>
   );

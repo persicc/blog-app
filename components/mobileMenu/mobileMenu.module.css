@@ -1,0 +1,22 @@
+.mobileMenu {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  inset: 0;
+  font-size: 2rem;
+  background: white;
+  transition: all 0.05s ease-in;
+  z-index: 999;
+}
+
+.open {
+  opacity: 1;
+  visibility: visible;
+}
+.close {
+  opacity: 0;
+  visibility: hidden;
+}
