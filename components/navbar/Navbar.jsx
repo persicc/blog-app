@@ -7,11 +7,13 @@ import Modal from "../modal/Modal";
 import SearchIcon from "@mui/icons-material/Search";
 import MobileMenu from "../mobileMenu/MobileMenu";
 import AuthLinks from "../authLinks/authLinks";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const rouer = useRouter();
 
   const openModal = () => {
     setOpen(!open);

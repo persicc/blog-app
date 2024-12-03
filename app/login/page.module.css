@@ -1,0 +1,28 @@
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 6rem);
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  border: 2px solid lightgrey;
+  padding: 4rem;
+  border-radius: 2rem;
+}
+.input {
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -1,12 +1,11 @@
 import styles from "./button.module.css";
 
-function Button({ children, onClick, color }) {
+function Button({ children, onClick, outline, full }) {
   return (
-    <div>
+    <div className={styles.buttonContainer} style={{ width: full && "100%" }}>
       <button
-        className={styles.button}
+        className={outline ? styles.outline : styles.button}
         onClick={onClick}
-        style={{ backgroundColor: color }}
       >
         {children}
       </button>
