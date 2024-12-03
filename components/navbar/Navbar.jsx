@@ -6,11 +6,12 @@ import Link from "next/link";
 import Modal from "../modal/Modal";
 import SearchIcon from "@mui/icons-material/Search";
 import MobileMenu from "../mobileMenu/MobileMenu";
+import AuthLinks from "../authLinks/authLinks";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(true);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const openModal = () => {
     setOpen(!open);
@@ -46,6 +47,8 @@ function Navbar() {
           )}
           <SearchIcon className={styles.searchIcon} onClick={openSearch} />
         </div>
+
+        <AuthLinks />
 
         <div className={styles.menuButton} onClick={openMobileMenu}>
           Menu

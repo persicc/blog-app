@@ -1,9 +1,13 @@
 import styles from "./button.module.css";
 
-function Button({ children, onClick }) {
+function Button({ children, onClick, color }) {
   return (
     <div>
-      <button className={styles.button} onClick={onClick}>
+      <button
+        className={styles.button}
+        onClick={onClick}
+        style={{ backgroundColor: color }}
+      >
         {children}
       </button>
     </div>
