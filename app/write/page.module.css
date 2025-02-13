@@ -1,0 +1,37 @@
+.writePage {
+  margin-top: var(--margin-top);
+  padding: var(--page-padding);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 35rem;
+  margin-top: 2rem;
+  font-size: var(--blog-text-font-size);
+  line-height: var(--blog-text-line-height);
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+  outline: none;
+}
+
+.button {
+  display: block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.input {
+  display: block;
+  height: 3rem;
+  width: 100%;
+  font-size: 2rem;
+  color: #131313;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 2rem;
+}
+
+.title {
+  font-size: var(--big-title-font-size);
+}

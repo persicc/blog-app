@@ -1,0 +1,26 @@
+.singleBlogPage {
+  margin-top: var(--margin-top);
+  padding: var(--page-padding);
+  max-width: 40rem;
+  margin-inline: auto;
+  line-height: calc(1.3 * var(--big-title-font-size));
+}
+
+.title {
+  font-size: var(--big-title-font-size);
+  text-transform: capitalize;
+}
+
+.imageContainer {
+  margin-top: 2rem;
+  height: 30rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.content {
+  margin-top: 5rem;
+  font-size: 1.3rem;
+  line-height: calc(1.618 * 1.3rem);
+  font-family: "Times New Roman", Times, serif;
+}

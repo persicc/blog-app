@@ -1,0 +1,91 @@
+:root {
+  --navbar-shadow: 0px -2px 113px 0px rgba(0, 0, 0, 0.123);
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: var(--navbar-shadow);
+  z-index: 1000;
+}
+
+.menuIcon {
+  display: none;
+  cursor: pointer;
+}
+
+.linksContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-style: italic;
+  font-family: "Dancing Script", cursive;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  align-self: last baseline;
+}
+
+.authLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imageContainer {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.writeButton {
+  padding: 0.7rem 1.5rem;
+  border-radius: 10rem;
+  background-color: #131313;
+  color: white;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.writeButton:hover {
+  background: black;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.signOutButton {
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  background: white;
+  color: #131313;
+  cursor: pointer;
+  border: 1px solid #131313;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 900px) {
+  .links {
+    display: none;
+  }
+
+  .menuIcon {
+    display: block;
+  }
+}

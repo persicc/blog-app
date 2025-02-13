@@ -1,0 +1,74 @@
+:root {
+  --title-font-size: clamp(1rem, 8vw, 3rem);
+  --auth-button-box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
+}
+
+.signIn {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #131313;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: white;
+  font-size: var(--title-font-size);
+  margin-bottom: 1rem;
+}
+
+.title span {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.authContainer {
+  background: white;
+  height: 20rem;
+  width: 30rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+}
+
+.authButton {
+  background: white;
+  color: black;
+  border: 1px solid lightgrey;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--auth-button-box-shadow);
+}
+
+.authButton:hover {
+  background: lightgrey;
+}
+
+@media (max-width: 500px) {
+  .authContainer {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
