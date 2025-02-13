@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { RiMenu4Fill } from "react-icons/ri";
 import styles from "./navbar.module.css";
 import { usePathname } from "next/navigation";
+import { UserContext } from "@/context/UserContext";
 
 function Navbar() {
   const { signOut } = useAuth();
-  const { user } = useAuth();
+  const { currentUser } = useContext(UserContext);
   const pathname = usePathname();
   const toggleMobileMenu = () => {};
 
@@ -24,7 +25,7 @@ function Navbar() {
         <div className={styles.links}>
           <Link href="/">Home</Link>
           <Link href="/">My Feed</Link>
-          <Link href="/">Favorites</Link>
+          <Link href="/favorites">Favorites</Link>
           <Link href="/">Profile</Link>
           <Link href="/">About Us</Link>
         </div>
@@ -36,9 +37,9 @@ function Navbar() {
         <Link href="/write">
           <button className={styles.writeButton}>Write</button>
         </Link>
-        <p>{user?.email}</p>
+        <p>{currentUser?.email}</p>
         <div className={styles.imageContainer}>
-          <img src={user?.user_metadata.avatar_url} alt="User Avatar" />
+          <img src={currentUser?.user_metadata.avatar_url} alt="User Avatar" />
         </div>
         <RiMenu4Fill
           onClick={toggleMobileMenu}

@@ -2,20 +2,11 @@
 
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import useUser from "./useUser";
+import { useState } from "react";
 
 function useAuth() {
   const [user, setUser] = useState(null);
-  const { insertUser } = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((_, session) => {
-      setUser(session?.user ?? null);
-      insertUser(user?.id, user?.email, user?.user_metadata?.avatar_url);
-    });
-  }, []);
 
   const signUp = async (email, password) => {
     const { data, error } = await supabase.auth.signUp({
@@ -60,7 +51,13 @@ function useAuth() {
     router.push("/signIn");
   };
 
-  return { user, signInWithGoogle, signOut, signUp, signInWithPassword };
+  return {
+    user,
+    signInWithGoogle,
+    signOut,
+    signUp,
+    signInWithPassword,
+  };
 }
 
 export default useAuth;

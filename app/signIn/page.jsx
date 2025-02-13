@@ -1,13 +1,13 @@
 "use client";
 
 import useAuth from "@/hooks/useAuth";
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import Input from "@/components/Input/Input";
 import styles from "./page.module.css";
 
 function SignInPage() {
   const { signInWithGoogle, signUp, signInWithPassword } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -22,7 +22,6 @@ function SignInPage() {
 
   const handleSignInWithPassword = async () => {
     const { data, error } = await signInWithPassword(email, password);
-    console.log(error.message);
     if (error) {
       setErrorMessage(error.message);
     }

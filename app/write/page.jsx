@@ -2,15 +2,13 @@
 
 import React, { useState } from "react";
 import useBlogs from "@/hooks/useBlogs";
-import Modal from "@/components/Modal/Modal";
 import styles from "./page.module.css";
 
 function WritePage() {
   const { addBlog } = useBlogs();
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
-
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -24,13 +22,8 @@ function WritePage() {
 
   const handleSubmit = () => {
     addBlog(title, content, file);
-    setModalOpen(true);
     setTitle("");
     setContent("");
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
   };
 
   return (
@@ -56,8 +49,6 @@ function WritePage() {
         </button>
 
         {preview && <img src={preview} alt="Preview" />}
-
-        <Modal isOpen={modalOpen} onClose={closeModal} />
       </div>
     </div>
   );

@@ -1,11 +1,7 @@
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
-import {
-  MobileMenuContext,
-  MobileMenuContextProvider,
-} from "@/context/MobileMenuContext";
-import MobileMenu from "@/components/MobileMenu/MobileMenu";
+import { UserProvider } from "@/context/UserContext";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,13 +11,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <ProtectedRoutes>
-        <body>
-          <Navbar />
-          {children}
-          <MobileMenu />
-        </body>
-      </ProtectedRoutes>
+      <body>
+        <UserProvider>
+          <ProtectedRoutes>
+            <Navbar />
+            {children}
+          </ProtectedRoutes>
+        </UserProvider>
+      </body>
     </html>
   );
 }

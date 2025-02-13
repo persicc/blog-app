@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styles from "./blogCard.module.css";
 import { FaArrowUp } from "react-icons/fa6";

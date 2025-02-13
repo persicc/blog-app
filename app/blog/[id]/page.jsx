@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 function SingleBlogPage() {
   const { fetchSingleBlog } = useBlogs();
   const { id } = useParams();
+
   const [blog, setBlog] = useState({});
   const [author, setAuthor] = useState();
 

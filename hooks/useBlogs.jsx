@@ -1,11 +1,11 @@
 "use client";
 
 import { supabase } from "@/lib/supabase";
-import { useEffect, useState } from "react";
-import useAuth from "./useAuth";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "@/context/UserContext";
 
 function useBlogs() {
-  const { user } = useAuth();
+  const { currentUser } = useContext(UserContext);
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
 
@@ -36,21 +36,12 @@ function useBlogs() {
       .upload(`${user?.id}/${file?.name}`, file);
   };
 
-  const getAuthor = async (id) => {
-    const { data, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("id", id);
-    return { data, error };
-  };
-
   const fetchSingleBlog = async (id) => {
     const { data, error } = await supabase
       .from("blogs")
       .select("*")
       .eq("id", id);
-    const author = await getAuthor(data[0].user_id);
-    return { data, error, author };
+    return { data, error };
   };
 
   return { blogs, addBlog, error, fetchSingleBlog };
