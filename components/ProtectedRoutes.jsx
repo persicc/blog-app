@@ -1,23 +1,26 @@
 "use client";
 
-import { UserContext } from "@/context/UserContext";
+import useUser from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 function ProtectedRoutes({ children }) {
-  const { currentUser, isLoading } = useContext(UserContext);
+  const { user, loading } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    if (isLoading == false) {
-      console.log("Redirecting...");
-      if (currentUser) {
-        router.push("/");
-      } else {
-        router.push("/signIn");
-      }
+    if (!loading) {
+      if (!user) router.push("/signIn");
     }
-  }, []);
+  }, [user, loading, router]);
+
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return children;
 }

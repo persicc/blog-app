@@ -6,11 +6,11 @@ import Link from "next/link";
 import { RiMenu4Fill } from "react-icons/ri";
 import styles from "./navbar.module.css";
 import { usePathname } from "next/navigation";
-import { UserContext } from "@/context/UserContext";
+import useUser from "@/hooks/useUser";
 
 function Navbar() {
   const { signOut } = useAuth();
-  const { currentUser } = useContext(UserContext);
+  const { user } = useUser();
   const pathname = usePathname();
   const toggleMobileMenu = () => {};
 
@@ -37,9 +37,9 @@ function Navbar() {
         <Link href="/write">
           <button className={styles.writeButton}>Write</button>
         </Link>
-        <p>{currentUser?.email}</p>
+        <p>{user?.email}</p>
         <div className={styles.imageContainer}>
-          <img src={currentUser?.user_metadata.avatar_url} alt="User Avatar" />
+          <img src={user?.user_metadata.avatar_url} alt="User Avatar" />
         </div>
         <RiMenu4Fill
           onClick={toggleMobileMenu}

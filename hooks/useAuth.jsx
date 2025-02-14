@@ -2,61 +2,64 @@
 
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import useUser from "./useUser";
 import { useState } from "react";
 
 function useAuth() {
-  const [user, setUser] = useState(null);
+  const { setUser } = useUser();
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const signUp = async (email, password) => {
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
-
-    if (error) {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
+      setUser(data.user);
+    } catch (error) {
       console.log("Error sam dobio:", error.message);
-    } else {
-      console.log("User created: ", data);
+      setError(error.message);
     }
-
-    return { data, error };
   };
 
   const signInWithPassword = async (email, password) => {
-    let { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-
-    if (error) {
+    try {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      setUser(data.user);
+    } catch (error) {
       console.log(error.message);
+      setError(error.message);
     }
-
-    console.log("User signed in: ", data);
-    setUser(data.user);
-
-    return { data, error };
   };
 
   const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
+    try {
+      const res = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+      console.log("Google login response", res.data);
+    } catch (error) {
+      console.log("Erorr logging in with Google", error.message);
+    }
   };
 
   const signOut = async () => {
     await supabase.auth.signOut();
     setUser(null);
     router.push("/signIn");
+    console.log("Logged out");
   };
 
   return {
-    user,
-    signInWithGoogle,
-    signOut,
     signUp,
     signInWithPassword,
+    signInWithGoogle,
+    signOut,
+    error,
   };
 }
 
