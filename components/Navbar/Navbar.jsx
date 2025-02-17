@@ -26,7 +26,7 @@ function Navbar() {
           <Link href="/">Home</Link>
           <Link href="/">My Feed</Link>
           <Link href="/favorites">Favorites</Link>
-          <Link href="/">Profile</Link>
+          <Link href="/profile">Profile</Link>
           <Link href="/">About Us</Link>
         </div>
       </div>
@@ -38,9 +38,11 @@ function Navbar() {
           <button className={styles.writeButton}>Write</button>
         </Link>
         <p>{user?.email}</p>
-        <div className={styles.imageContainer}>
-          <img src={user?.user_metadata.avatar_url} alt="User Avatar" />
-        </div>
+        <Link href="/profile">
+          <div className={styles.imageContainer}>
+            <img src={user?.user_metadata.avatar_url} alt="User Avatar" />
+          </div>
+        </Link>
         <RiMenu4Fill
           onClick={toggleMobileMenu}
           className={styles.menuIcon}

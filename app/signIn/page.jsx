@@ -11,6 +11,13 @@ function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSignUp = () => {
+    signUp(email, password);
+  };
+
+  const handleSignInWithPassword = () => {
+    signInWithPassword(email, password);
+  };
   return (
     <div className={styles.signIn}>
       <div className={styles.container}>
@@ -33,15 +40,12 @@ function SignInPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            className={styles.authButton}
-            onClick={(email, password) => signUp(email, password)}
-          >
+          <button className={styles.authButton} onClick={handleSignUp}>
             Sign Up
           </button>
           <button
             className={styles.authButton}
-            onClick={(email, password) => signInWithPassword(email, password)}
+            onClick={handleSignInWithPassword}
           >
             Log In
           </button>

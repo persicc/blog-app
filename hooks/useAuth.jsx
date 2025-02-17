@@ -11,39 +11,46 @@ function useAuth() {
   const router = useRouter();
 
   const signUp = async (email, password) => {
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
-      setUser(data.user);
-    } catch (error) {
-      console.log("Error sam dobio:", error.message);
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+
+    setUser(data.user);
+
+    if (error) {
       setError(error.message);
+    } else {
+      await supabase.from("users").insert({
+        id: data.user.id,
+        email: data.user.email,
+        imgUrl: "",
+        created_at: data.user.created_at,
+      });
+      router.push("/");
     }
   };
 
   const signInWithPassword = async (email, password) => {
-    try {
-      let { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      setUser(data.user);
-    } catch (error) {
-      console.log(error.message);
+    let { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+    setUser(data.user);
+
+    if (error) {
       setError(error.message);
+    } else {
+      router.push("/");
     }
   };
 
   const signInWithGoogle = async () => {
-    try {
-      const res = await supabase.auth.signInWithOAuth({
-        provider: "google",
-      });
-      console.log("Google login response", res.data);
-    } catch (error) {
-      console.log("Erorr logging in with Google", error.message);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+    if (error) {
+      setError(error.message);
     }
   };
 
@@ -51,7 +58,6 @@ function useAuth() {
     await supabase.auth.signOut();
     setUser(null);
     router.push("/signIn");
-    console.log("Logged out");
   };
 
   return {
