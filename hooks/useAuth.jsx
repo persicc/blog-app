@@ -2,10 +2,12 @@
 
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import useUser from "./useUser";
 import { useState } from "react";
 
 function useAuth() {
-  const [user, setUser] = useState(null);
+  const { setUser } = useUser();
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const signUp = async (email, password) => {
@@ -14,13 +16,19 @@ function useAuth() {
       password: password,
     });
 
-    if (error) {
-      console.log("Error sam dobio:", error.message);
-    } else {
-      console.log("User created: ", data);
-    }
+    setUser(data.user);
 
-    return { data, error };
+    if (error) {
+      setError(error.message);
+    } else {
+      await supabase.from("users").insert({
+        id: data.user.id,
+        email: data.user.email,
+        imgUrl: "",
+        created_at: data.user.created_at,
+      });
+      router.push("/");
+    }
   };
 
   const signInWithPassword = async (email, password) => {
@@ -28,21 +36,22 @@ function useAuth() {
       email: email,
       password: password,
     });
-
-    if (error) {
-      console.log(error.message);
-    }
-
-    console.log("User signed in: ", data);
     setUser(data.user);
 
-    return { data, error };
+    if (error) {
+      setError(error.message);
+    } else {
+      router.push("/");
+    }
   };
 
   const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
+    if (error) {
+      setError(error.message);
+    }
   };
 
   const signOut = async () => {
@@ -52,11 +61,11 @@ function useAuth() {
   };
 
   return {
-    user,
-    signInWithGoogle,
-    signOut,
     signUp,
     signInWithPassword,
+    signInWithGoogle,
+    signOut,
+    error,
   };
 }
 

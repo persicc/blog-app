@@ -6,37 +6,28 @@ import { createContext, useEffect, useState } from "react";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getUser = async () => {
+    const checkUser = async () => {
       try {
-        console.log("Getting user...");
-        const { data, error } = await supabase.auth.getUser();
-        setCurrentUser(data.user);
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        setUser(user);
+        console.log("User: ", user);
       } catch (error) {
-        console.log("Error getting user", error.messsage);
+        console.log("Error checking user: ", error.message);
+      } finally {
+        setLoading(false);
       }
-      console.log("Finished getting user");
-      console.log(currentUser);
-      setIsLoading(false);
-      console.log("Loading finished");
     };
-
-    getUser();
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setCurrentUser(session?.user || null);
-      }
-    );
-
-    return () => listener.subscription.unsubscribe();
+    checkUser();
   }, []);
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, isLoading }}>
+    <UserContext.Provider value={{ user, setUser, loading }}>
       {children}
     </UserContext.Provider>
   );

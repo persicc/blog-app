@@ -1,0 +1,42 @@
+.authModal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logo {
+  font-style: italic;
+  font-family: "Dancing Script", cursive;
+  font-size: 4rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.modalMessage {
+  font-size: 1.5rem;
+  color: grey;
+}
+
+.button {
+  border: none;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 2px solid #131313;
+  border-radius: 10rem;
+  font-size: 1.3rem;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #131313;
+  color: white;
+}

@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { RiMenu4Fill } from "react-icons/ri";
 import styles from "./navbar.module.css";
 import { usePathname } from "next/navigation";
-import { UserContext } from "@/context/UserContext";
+import useUser from "@/hooks/useUser";
 
 function Navbar() {
   const { signOut } = useAuth();
-  const { currentUser } = useContext(UserContext);
+  const { user } = useUser();
   const pathname = usePathname();
   const toggleMobileMenu = () => {};
 
@@ -26,7 +26,7 @@ function Navbar() {
           <Link href="/">Home</Link>
           <Link href="/">My Feed</Link>
           <Link href="/favorites">Favorites</Link>
-          <Link href="/">Profile</Link>
+          <Link href="/profile">Profile</Link>
           <Link href="/">About Us</Link>
         </div>
       </div>
@@ -37,10 +37,19 @@ function Navbar() {
         <Link href="/write">
           <button className={styles.writeButton}>Write</button>
         </Link>
-        <p>{currentUser?.email}</p>
-        <div className={styles.imageContainer}>
-          <img src={currentUser?.user_metadata.avatar_url} alt="User Avatar" />
-        </div>
+        <p>{user?.email}</p>
+        <Link href="/profile">
+          <div className={styles.imageContainer}>
+            <img
+              src={
+                user?.user_metadata.avatar_url
+                  ? user?.user_metadata.avatar_url
+                  : "/avatar.jpg"
+              }
+              alt="User Avatar"
+            />
+          </div>
+        </Link>
         <RiMenu4Fill
           onClick={toggleMobileMenu}
           className={styles.menuIcon}

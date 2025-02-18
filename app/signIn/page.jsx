@@ -6,27 +6,18 @@ import { FcGoogle } from "react-icons/fc";
 import styles from "./page.module.css";
 
 function SignInPage() {
-  const { signInWithGoogle, signUp, signInWithPassword } = useAuth();
+  const { signInWithGoogle, signUp, signInWithPassword, error } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleSignUp = async () => {
-    const { data, error } = await signUp(email, password);
-
-    if (error) {
-      setErrorMessage(error.message);
-    }
+  const handleSignUp = () => {
+    signUp(email, password);
   };
 
-  const handleSignInWithPassword = async () => {
-    const { data, error } = await signInWithPassword(email, password);
-    if (error) {
-      setErrorMessage(error.message);
-    }
+  const handleSignInWithPassword = () => {
+    signInWithPassword(email, password);
   };
-
   return (
     <div className={styles.signIn}>
       <div className={styles.container}>
@@ -36,7 +27,7 @@ function SignInPage() {
           </h1>
         </div>
         <div className={styles.authContainer}>
-          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {error && <p className={styles.error}>{error}</p>}
           <input
             type="email"
             placeholder="Email"
