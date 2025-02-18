@@ -13,7 +13,6 @@ function ProtectedRoutes({ children }) {
   useEffect(() => {
     if (!loading && !user && path != "/signIn") setOpen(true);
     if (path == "/signIn") setOpen(false);
-    console.log(path);
   }, [user, loading, path]);
 
   if (loading) {
