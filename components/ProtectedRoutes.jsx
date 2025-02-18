@@ -1,18 +1,20 @@
 "use client";
 
+import { AuthModalContext } from "@/context/AuthModalContext";
 import useUser from "@/hooks/useUser";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useContext, useEffect } from "react";
 
 function ProtectedRoutes({ children }) {
   const { user, loading } = useUser();
-  const router = useRouter();
+  const { setOpen } = useContext(AuthModalContext);
+  const path = usePathname();
 
   useEffect(() => {
-    if (!loading) {
-      if (!user) router.push("/signIn");
-    }
-  }, [user, loading, router]);
+    if (!loading && !user && path != "/signIn") setOpen(true);
+    if (path == "/signIn") setOpen(false);
+    console.log(path);
+  }, [user, loading, path]);
 
   if (loading) {
     return (

@@ -2,6 +2,8 @@ import ProtectedRoutes from "@/components/ProtectedRoutes";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { UserProvider } from "@/context/UserContext";
+import { AuthModalProvider } from "@/context/AuthModalContext";
+import AuthModal from "@/components/AuthModal/AuthModal";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,10 +15,13 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <UserProvider>
-          <ProtectedRoutes>
-            <Navbar />
-            {children}
-          </ProtectedRoutes>
+          <AuthModalProvider>
+            <ProtectedRoutes>
+              <Navbar />
+              {children}
+              <AuthModal />
+            </ProtectedRoutes>
+          </AuthModalProvider>
         </UserProvider>
       </body>
     </html>

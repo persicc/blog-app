@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { RiMenu4Fill } from "react-icons/ri";
