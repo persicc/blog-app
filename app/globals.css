@@ -7,6 +7,13 @@
   --page-padding: 0 2rem;
   --blog-text-font-size: 1.3rem;
   --blog-text-line-height: calc(1.618 * 1.3rem);
+
+  --navbar-shadow: 0px -2px 113px 0px rgba(0, 0, 0, 0.123);
+
+  --title-font-size: clamp(1rem, 8vw, 3rem);
+  --auth-button-box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 0px 31px -7px rgba(0, 0, 0, 0.28);
 }
 
 * {
