@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import useBlogs from "@/hooks/useBlogs";
 import styles from "./page.module.css";
+import CommentSection from "@/components/CommentSection";
 
 function SingleBlogPage() {
   const { getBlogById } = useBlogs();
@@ -31,6 +32,8 @@ function SingleBlogPage() {
         </div>
         <p className={styles.content}>{blog.content}</p>
       </div>
+
+      <CommentSection blogId={id} />
     </div>
   );
 }

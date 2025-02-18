@@ -6,7 +6,7 @@ import React from "react";
 function ProfilePage() {
   const { user } = useUser();
 
-  return <div>{user.email}</div>;
+  return <div>{user?.email}</div>;
 }
 
 export default ProfilePage;

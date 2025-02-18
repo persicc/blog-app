@@ -40,7 +40,14 @@ function Navbar() {
         <p>{user?.email}</p>
         <Link href="/profile">
           <div className={styles.imageContainer}>
-            <img src={user?.user_metadata.avatar_url} alt="User Avatar" />
+            <img
+              src={
+                user?.user_metadata.avatar_url
+                  ? user?.user_metadata.avatar_url
+                  : "/avatar.jpg"
+              }
+              alt="User Avatar"
+            />
           </div>
         </Link>
         <RiMenu4Fill
