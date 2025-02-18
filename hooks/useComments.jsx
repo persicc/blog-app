@@ -6,10 +6,13 @@ import useUser from "./useUser";
 function useComments() {
   const { user } = useUser();
 
-  const getComments = async ({ blogId }) => {
+  const getComments = async (blogId) => {
+    console.log("Blog id: ", blogId);
+
     const { data, error } = await supabase
       .from("comments")
-      .select("*, users(email)");
+      .select("*, users(email)")
+      .eq("blog_id", blogId);
 
     return { data };
   };

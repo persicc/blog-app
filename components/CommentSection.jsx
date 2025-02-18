@@ -10,6 +10,7 @@ function CommentSection({ blogId }) {
 
   useEffect(() => {
     const getCommentList = async () => {
+      console.log("Blog id from useffect: ", blogId);
       const { data } = await getComments(blogId);
       setComments(data);
     };
